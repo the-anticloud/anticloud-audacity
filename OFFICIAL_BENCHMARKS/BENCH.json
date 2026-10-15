@@ -1,0 +1,922 @@
+{
+  "schema": "anticloud.tier-bench/1",
+  "project": "AUDACITY",
+  "source": {
+    "repo_path": "E:\\fenta\\Downloads\\The Anticloud\\ANTICLOUD_REPOS\\AUDIO_CONSUMER\\AUDACITY\\UPSTREAM_CLONE",
+    "git": {
+      "head": "8de3891657f6348916a466239b01301d16399747",
+      "url": "https://github.com/audacity/audacity",
+      "branch": "master",
+      "committed_at": "2026-10-01T21:22:00+02:00"
+    }
+  },
+  "metrics": {
+    "files_total": 5115,
+    "source_files_scanned": 3309,
+    "lines_of_code": 622754,
+    "languages": {
+      ".h": 1693,
+      ".cpp": 1515,
+      ".png": 711,
+      ".qml": 356,
+      ".txt": 228,
+      ".ts": 70,
+      ".po": 61,
+      "(none)": 53,
+      ".xpm": 44,
+      ".sh": 36,
+      ".cmake": 33,
+      ".lsp": 29,
+      ".ny": 28,
+      ".py": 20,
+      ".in": 17
+    }
+  },
+  "licence": {
+    "spdx": "GPL-3.0",
+    "class": "B",
+    "source_file": "LICENSE.txt",
+    "redistribution_allowed": false
+  },
+  "dependencies": {
+    "count": 5,
+    "unique": 5,
+    "by_ecosystem": {
+      "native": 5
+    },
+    "list": [
+      {
+        "ecosystem": "native",
+        "name": "ALSA",
+        "version": "",
+        "source_file": "thirdparty/portmixer/CMakeLists.txt",
+        "raw": "find_package( ALSA"
+      },
+      {
+        "ecosystem": "native",
+        "name": "OSS",
+        "version": "",
+        "source_file": "thirdparty/portmixer/CMakeLists.txt",
+        "raw": "find_package( OSS"
+      },
+      {
+        "ecosystem": "native",
+        "name": "Qt6",
+        "version": "",
+        "source_file": "src/appshell/qml/Audacity/AppShell/CMakeLists.txt",
+        "raw": "find_package(Qt6"
+      },
+      {
+        "ecosystem": "native",
+        "name": "Threads",
+        "version": "",
+        "source_file": "au3/src/CMakeLists.txt",
+        "raw": "find_package( Threads"
+      },
+      {
+        "ecosystem": "native",
+        "name": "Gettext",
+        "version": "",
+        "source_file": "au3/locale/CMakeLists.txt",
+        "raw": "find_package( Gettext"
+      }
+    ]
+  },
+  "owasp_top10": {
+    "total_findings": 401,
+    "files_with_findings": 371,
+    "severity": {
+      "high": 18,
+      "medium": 4,
+      "low": 379
+    },
+    "categories": {
+      "A01-BrokenAccessControl": {
+        "count": 1,
+        "findings": [
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-network-manager/curl/CurlHandleManager.cpp",
+            "line": 260,
+            "cwe": "CWE-295",
+            "snippet": "setOption(CURLOPT_SSL_VERIFYPEER, 0L);"
+          }
+        ]
+      },
+      "A02-CryptographicFailures": {
+        "count": 4,
+        "findings": [
+          {
+            "severity": "medium",
+            "file": "src/au3wrap/internal/au3project.cpp",
+            "line": 46,
+            "cwe": "CWE-338",
+            "snippet": "std::mt19937 generator(rd());"
+          },
+          {
+            "severity": "medium",
+            "file": "buildscripts/ci/translation/s3_packandsend.py",
+            "line": 60,
+            "cwe": "CWE-327",
+            "snippet": "hash_file = hashlib.sha1()"
+          },
+          {
+            "severity": "medium",
+            "file": "au3/modules/import-export/mod-opus/ExportOpus.cpp",
+            "line": 214,
+            "cwe": "CWE-338",
+            "snippet": "std::mt19937 gen(std::time(nullptr));"
+          },
+          {
+            "severity": "medium",
+            "file": "au3/libraries/au3-time-and-pitch/StaffPad/TimeAndPitch.cpp",
+            "line": 47,
+            "cwe": "CWE-338",
+            "snippet": "void generateRandomPhaseVector(float* dst, size_t size, std::mt19937& gen)"
+          }
+        ]
+      },
+      "A03-Injection": {
+        "count": 15,
+        "findings": [
+          {
+            "severity": "high",
+            "file": "thirdparty/portmixer/src/px_linux_alsa.c",
+            "line": 97,
+            "cwe": "CWE-120",
+            "snippet": "sprintf(name, \"hw:%d\", card);"
+          },
+          {
+            "severity": "high",
+            "file": "thirdparty/portmixer/src/px_unix_oss.c",
+            "line": 113,
+            "cwe": "CWE-120",
+            "snippet": "strcpy(name, MIXER_NAME_BASE);"
+          },
+          {
+            "severity": "high",
+            "file": "src/effects/nyquist/libnyquist/nyx.c",
+            "line": 1315,
+            "cwe": "CWE-120",
+            "snippet": "strcat(bmode, \"b\");"
+          },
+          {
+            "severity": "high",
+            "file": "au3/tests/octave/run_test.m",
+            "line": 74,
+            "cwe": "CWE-120",
+            "snippet": "aud_do(sprintf(\"SelectTracks: Track=%d TrackCount=%d Mode=Set\\n\", num, count));"
+          },
+          {
+            "severity": "high",
+            "file": "au3/src/Profiler.cpp",
+            "line": 128,
+            "cwe": "CWE-120",
+            "snippet": "strcpy(mFileName.get(), fileName);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/src/tracks/playabletrack/notetrack/ui/NoteTrackView.cpp",
+            "line": 627,
+            "cwe": "CWE-120",
+            "snippet": "sprintf(name, \"x%dr\", n);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/src/import/FormatClassifier.cpp",
+            "line": 59,
+            "cwe": "CWE-120",
+            "snippet": "sprintf(dfile, \"%s.sig\", filename);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/scripts/piped-work/pipe_test.pl",
+            "line": 493,
+            "cwe": "CWE-120",
+            "snippet": "my $padded = sprintf(\"%-${padLength}s\", $effect);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/modules/scripting/mod-script-pipe/PipeServer.cpp",
+            "line": 132,
+            "cwe": "CWE-120",
+            "snippet": "sprintf(toFifoName, fifotmpl, \"to\", getuid());"
+          },
+          {
+            "severity": "high",
+            "file": "au3/modules/import-export/mod-pcm/ExportPCM.cpp",
+            "line": 876,
+            "cwe": "CWE-120",
+            "snippet": "strcat(pDest.get(), \" \");"
+          },
+          {
+            "severity": "high",
+            "file": "au3/mac/Wrapper.c",
+            "line": 40,
+            "cwe": "CWE-120",
+            "snippet": "strcpy(path, argv[0]);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/locale/CeePlusPlusifyLanguageNames.pl",
+            "line": 18,
+            "cwe": "CWE-120",
+            "snippet": "push @newCodes, unpack('C*', sprintf(\"\\\\%03o\", $code));"
+          },
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-vst3/module_linux.cpp",
+            "line": 97,
+            "cwe": "CWE-120",
+            "snippet": "sprintf(buf, \"%d\", pid);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-vst/VSTWrapper.cpp",
+            "line": 78,
+            "cwe": "CWE-120",
+            "snippet": "strcpy((char*)ptr, \"Audacity Team\");       // Do not translate, max 64 + 1 for null terminator"
+          },
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-breakpad-configurer/internal/unix/CrashReportContext.cpp",
+            "line": 82,
+            "cwe": "CWE-120",
+            "snippet": "strcpy(DumpPath, dump_dir);"
+          }
+        ]
+      },
+      "A04-InsecureDesign": {
+        "count": 328,
+        "findings": [
+          {
+            "severity": "low",
+            "file": "src/uicomponents/qml/Audacity/UiComponents/numericformatter.cpp",
+            "line": 179,
+            "cwe": "CWE-",
+            "snippet": "m_scalingFactor = remainder.toDouble();"
+          },
+          {
+            "severity": "low",
+            "file": "src/uicomponents/qml/Audacity/UiComponents/numericviewmodel.cpp",
+            "line": 165,
+            "cwe": "CWE-",
+            "snippet": "// TODO log error"
+          },
+          {
+            "severity": "low",
+            "file": "src/trackedit/iclipsinteraction.h",
+            "line": 78,
+            "cwe": "CWE-",
+            "snippet": "//! TODO"
+          },
+          {
+            "severity": "low",
+            "file": "src/trackedit/trackediterrors.h",
+            "line": 11,
+            "cwe": "CWE-",
+            "snippet": "static constexpr int TRACKEDIT_FIRST = 6000; // TODO This has to go in framework's ret.h"
+          },
+          {
+            "severity": "low",
+            "file": "src/trackedit/tests/au3clipsinteraction_tests.cpp",
+            "line": 1262,
+            "cwe": "CWE-",
+            "snippet": "//! TODO: We should rename the parameter from changeClipSpeed once a value of"
+          },
+          {
+            "severity": "low",
+            "file": "src/trackedit/tests/environment.cpp",
+            "line": 58,
+            "cwe": "CWE-",
+            "snippet": "//! HACK"
+          },
+          {
+            "severity": "low",
+            "file": "src/trackedit/internal/trackeditactionscontroller.cpp",
+            "line": 1911,
+            "cwe": "CWE-",
+            "snippet": "if (muse::RealIsEqualOrMore(rv.val.toDouble(), playbackTime)) {"
+          },
+          {
+            "severity": "low",
+            "file": "src/trackedit/internal/au3/au3clipsinteraction.cpp",
+            "line": 128,
+            "cwe": "CWE-",
+            "snippet": "//! TODO Not sure what this method needs to be called to change the position, will need to clarify"
+          },
+          {
+            "severity": "low",
+            "file": "src/trackedit/internal/au3/au3clipsinteraction.h",
+            "line": 92,
+            "cwe": "CWE-",
+            "snippet": "//! TODO"
+          },
+          {
+            "severity": "low",
+            "file": "src/trackedit/internal/au3/au3tracksinteraction.cpp",
+            "line": 1380,
+            "cwe": "CWE-",
+            "snippet": "// TODO: The mixed rate zero crossing code is broken,"
+          },
+          {
+            "severity": "low",
+            "file": "src/trackedit/api/projectaudio.cpp",
+            "line": 35,
+            "cwe": "CWE-",
+            "snippet": "value.value(QStringLiteral(\"sampleRate\")).toDouble(),"
+          },
+          {
+            "severity": "low",
+            "file": "src/trackedit/api/projecteditobject.cpp",
+            "line": 120,
+            "cwe": "CWE-",
+            "snippet": "const double start = value.value(QStringLiteral(\"start\")).toDouble();"
+          },
+          {
+            "severity": "low",
+            "file": "src/spectrogram/internal/globalspectrogramconfiguration.cpp",
+            "line": 30,
+            "cwe": "CWE-",
+            "snippet": "m_minFreqChanged.send(val.toDouble());"
+          },
+          {
+            "severity": "low",
+            "file": "src/spectrogram/internal/au3/au3peakfinder.cpp",
+            "line": 19,
+            "cwe": "CWE-",
+            "snippet": "// TODO why this number?"
+          },
+          {
+            "severity": "low",
+            "file": "src/spectrogram/internal/au3/au3spectrogramsettings.cpp",
+            "line": 258,
+            "cwe": "CWE-",
+            "snippet": "// JUST USING CONSTANT PARAMETERS FOR NOW. @todo : Should be inferred from settings"
+          },
+          {
+            "severity": "low",
+            "file": "src/record/tests/au3record_tests.cpp",
+            "line": 189,
+            "cwe": "CWE-",
+            "snippet": "return q.param(\"seekTime\").toDouble() == 6.0;"
+          },
+          {
+            "severity": "low",
+            "file": "src/record/tests/environment.cpp",
+            "line": 50,
+            "cwe": "CWE-",
+            "snippet": "//! HACK"
+          },
+          {
+            "severity": "low",
+            "file": "src/record/internal/recordconfiguration.cpp",
+            "line": 82,
+            "cwe": "CWE-",
+            "snippet": "return muse::settings()->value(LEAD_IN_TIME_DURATION_KEY).toDouble();"
+          },
+          {
+            "severity": "low",
+            "file": "src/record/internal/au3/au3record.cpp",
+            "line": 353,
+            "cwe": "CWE-",
+            "snippet": "//! TODO: should be configurable"
+          },
+          {
+            "severity": "low",
+            "file": "src/projectscene/view/trackspanel/paneltrackslistmodel.cpp",
+            "line": 292,
+            "cwe": "CWE-",
+            "snippet": "// todo: move"
+          },
+          {
+            "severity": "low",
+            "file": "src/projectscene/view/tracksitemsview/trackclipslistmodel.cpp",
+            "line": 216,
+            "cwe": "CWE-",
+            "snippet": "// TODO: is it possible to know if update is neccessary?"
+          },
+          {
+            "severity": "low",
+            "file": "src/projectscene/view/tracksitemsview/tracklabelslistmodel.cpp",
+            "line": 158,
+            "cwe": "CWE-",
+            "snippet": "// TODO: is it possible to know if update is neccessary?"
+          },
+          {
+            "severity": "low",
+            "file": "src/projectscene/view/tracksitemsview/viewtrackslistmodel.cpp",
+            "line": 78,
+            "cwe": "CWE-",
+            "snippet": "// TODO: only dataChanged affected tracks, not the whole thing"
+          },
+          {
+            "severity": "low",
+            "file": "src/projectscene/view/tracksitemsview/waveview.cpp",
+            "line": 24,
+            "cwe": "CWE-",
+            "snippet": "static const QColor RMS_SELECTED_COLOR = QColor(255, 255, 255); // TODO: This need update"
+          },
+          {
+            "severity": "low",
+            "file": "src/projectscene/view/tracksitemsview/labeleditor/labelstableviewmodel.cpp",
+            "line": 522,
+            "cwe": "CWE-",
+            "snippet": "if (muse::RealIsEqualOrLess(endTimeCell->value().toDouble(), value.toDouble())) {"
+          }
+        ]
+      },
+      "A05-SecurityMisconfiguration": {
+        "count": 1,
+        "findings": [
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-wx-wrappers/FileDialog/mac/FileDialogPrivate.mm",
+            "line": 205,
+            "cwe": "CWE-1188",
+            "snippet": "bool allowAll = false;"
+          }
+        ]
+      },
+      "A06-VulnerableComponents": {
+        "count": 0,
+        "findings": []
+      },
+      "A07-AuthFailures": {
+        "count": 1,
+        "findings": [
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-cloud-audiocom/OAuthService.cpp",
+            "line": 43,
+            "cwe": "CWE-798",
+            "snippet": "const std::string_view passwordPrefix = \"password=\";\nconst std::string_view tokenPrefix = \"token=\";"
+          }
+        ]
+      },
+      "A08-SoftwareDataIntegrity": {
+        "count": 51,
+        "findings": [
+          {
+            "severity": "low",
+            "file": "src/importexport/import/tests/legacyaupimporter_tests.cpp",
+            "line": 112,
+            "cwe": "CWE-319",
+            "snippet": "\"<project xmlns=\\\"http://audacity.sourceforge.net/xml/\\\" projname=\\\"%1\\\" version=\\\"1.3.0\\\" audacityversion=\\\"2.4.2\\\" rate=\\\"%2\\\">\\n\""
+          },
+          {
+            "severity": "low",
+            "file": "src/au3cloud/internal/oauthhttpserverreplyhandler.cpp",
+            "line": 283,
+            "cwe": "CWE-319",
+            "snippet": "url.setUrl(QStringLiteral(\"http://127.0.0.1:\") + QString::number(port)"
+          },
+          {
+            "severity": "low",
+            "file": "src/appshell/qml/Audacity/AppShell/aboutmodel.cpp",
+            "line": 155,
+            "cwe": "CWE-319",
+            "snippet": "{ \"LAME\", \"http://lame.sourceforge.net/\" },"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/AboutDialog.cpp",
+            "line": 251,
+            "cwe": "CWE-319",
+            "snippet": "AddCredit(wxT(\"[[http://lame.sourceforge.net/|LAME]]\"), roleLibrary);"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/AudacityApp.cpp",
+            "line": 21,
+            "cwe": "CWE-319",
+            "snippet": "// See: Visual Leak Detector @ http://vld.codeplex.com/"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/AutoRecoveryDialog.cpp",
+            "line": 447,
+            "cwe": "CWE-319",
+            "snippet": "//    http://trac.wxwidgets.org/ticket/16440"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/FreqWindow.cpp",
+            "line": 540,
+            "cwe": "CWE-319",
+            "snippet": "// http://www.eramp.com/WCAG_2_audio_contrast_tool_help.htm"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/MenuCreator.cpp",
+            "line": 567,
+            "cwe": "CWE-319",
+            "snippet": "//   http://bugzilla.audacityteam.org/show_bug.cgi?id=458"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/ProjectFileManager.cpp",
+            "line": 910,
+            "cwe": "CWE-319",
+            "snippet": "//    This was reported in http://bugzilla.audacityteam.org/show_bug.cgi?id=137#c17,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/ProjectWindow.cpp",
+            "line": 1120,
+            "cwe": "CWE-319",
+            "snippet": "//  The wxWidgets bug http://trac.wxwidgets.org/ticket/16636 prevents"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/prefs/PrefsDialog.cpp",
+            "line": 895,
+            "cwe": "CWE-319",
+            "snippet": "//   http://bugzilla.audacityteam.org/show_bug.cgi?id=458"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/menus/EditMenus.cpp",
+            "line": 1054,
+            "cwe": "CWE-319",
+            "snippet": "//   http://bugzilla.audacityteam.org/show_bug.cgi?id=458"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/effects/Contrast.cpp",
+            "line": 262,
+            "cwe": "CWE-319",
+            "snippet": "// http://www.eramp.com/WCAG_2_audio_contrast_tool_help.htm"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/effects/VST/VSTControlOSX.mm",
+            "line": 11,
+            "cwe": "CWE-319",
+            "snippet": "http://www.hairersoft.com/Downloads/HSVSTView.zip"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/effects/vamp/VampEffect.cpp",
+            "line": 10,
+            "cwe": "CWE-319",
+            "snippet": "http://www.vamp-plugins.org/"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/effects/vamp/VampEffect.h",
+            "line": 10,
+            "cwe": "CWE-319",
+            "snippet": "http://www.vamp-plugins.org/"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/effects/audiounits/AUControl.mm",
+            "line": 11,
+            "cwe": "CWE-319",
+            "snippet": "http://www.hairersoft.com/Downloads/HSAUView.zip"
+          },
+          {
+            "severity": "low",
+            "file": "au3/scripts/piped-work/pipeclient.py",
+            "line": 68,
+            "cwe": "CWE-319",
+            "snippet": "<http://www.gnu.org/licenses/old-licenses/gpl-2.0.html />"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/nyquist/mod-nyq-bench/NyqBench.cpp",
+            "line": 46,
+            "cwe": "CWE-319",
+            "snippet": "// http://tango.freedesktop.org/Tango_Icon_Gallery"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ogg/ImportOGG.cpp",
+            "line": 211,
+            "cwe": "CWE-319",
+            "snippet": "* (http://www.eso.org/~ndevilla/endian/) */"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/FFmpegPresets.cpp",
+            "line": 396,
+            "cwe": "CWE-319",
+            "snippet": "=wxT(\"http://audacity.sourceforge.net/xml/audacityffmpegpreset-1.0.0.dtd\");"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-xml/XMLWriter.cpp",
+            "line": 222,
+            "cwe": "CWE-319",
+            "snippet": "// See http://www.w3.org/TR/REC-xml for reference"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-wx-wrappers/FileDialog/mac/FileDialogPrivate.mm",
+            "line": 99,
+            "cwe": "CWE-319",
+            "snippet": "//    http://bugzilla.audacityteam.org/show_bug.cgi?id=2371"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-wx-init/ProgressDialog.cpp",
+            "line": 1341,
+            "cwe": "CWE-319",
+            "snippet": "// http://wiki.audacityteam.org/wiki/Proposal_Timer_Record_Improvements."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-wave-track/Sequence.cpp",
+            "line": 197,
+            "cwe": "CWE-319",
+            "snippet": "// Note this fix for http://bugzilla.audacityteam.org/show_bug.cgi?id=451,"
+          }
+        ]
+      },
+      "A09-LoggingMonitoringFailures": {
+        "count": 0,
+        "findings": []
+      },
+      "A10-SSRF": {
+        "count": 0,
+        "findings": []
+      }
+    }
+  },
+  "owasp_llm_top10": {
+    "total_findings": 21,
+    "files_with_findings": 21,
+    "severity": {
+      "high": 0,
+      "medium": 11,
+      "low": 10
+    },
+    "categories": {
+      "LLM01-PromptInjection": {
+        "count": 11,
+        "findings": [
+          {
+            "severity": "medium",
+            "file": "src/trackedit/tests/au3clipsinteraction_tests.cpp",
+            "line": 746,
+            "cwe": "CWE-1336",
+            "snippet": "auto source = factory.createTrackFromTemplate(\"source\", { { 0.0, { { 0.1, TrackTemplateFactory::createNoise } } } });"
+          },
+          {
+            "severity": "medium",
+            "file": "src/trackedit/tests/au3interactiontestbase.h",
+            "line": 203,
+            "cwe": "CWE-1336",
+            "snippet": "trackId = factory.addTrackFromTemplate(\"clipWithMinSilence\", {"
+          },
+          {
+            "severity": "medium",
+            "file": "src/trackedit/tests/au3tracksinteraction_tests.cpp",
+            "line": 1451,
+            "cwe": "CWE-1336",
+            "snippet": "const TrackId sourceLabelTrack1Id = factory.addLabelTrackFromTemplate(\"Source Label Track 1\", {"
+          },
+          {
+            "severity": "medium",
+            "file": "src/trackedit/tests/trackeditoperationcontroller_tests.cpp",
+            "line": 57,
+            "cwe": "CWE-1336",
+            "snippet": "const auto source = factory.createTrackFromTemplate(\"source\", { { 1.0, { { 0.1, TrackTemplateFactory::createNoise } } } });"
+          },
+          {
+            "severity": "medium",
+            "file": "src/playback/tests/au3player_tests.cpp",
+            "line": 77,
+            "cwe": "CWE-1336",
+            "snippet": "factory.addTrackFromTemplate(\"track\", {"
+          },
+          {
+            "severity": "medium",
+            "file": "src/importexport/export/view/metadatamodel.cpp",
+            "line": 119,
+            "cwe": "CWE-1336",
+            "snippet": "void MetadataModel::loadTemplate()"
+          },
+          {
+            "severity": "medium",
+            "file": "src/importexport/export/view/metadatamodel.h",
+            "line": 50,
+            "cwe": "CWE-1336",
+            "snippet": "Q_INVOKABLE void loadTemplate();"
+          },
+          {
+            "severity": "medium",
+            "file": "src/au3wrap/tests/tracktemplatefactory.cpp",
+            "line": 19,
+            "cwe": "CWE-1336",
+            "snippet": "std::shared_ptr<WaveTrack> TrackTemplateFactory::createTrackFromTemplate(const std::string& name,"
+          },
+          {
+            "severity": "medium",
+            "file": "src/au3wrap/tests/tracktemplatefactory.h",
+            "line": 27,
+            "cwe": "CWE-1336",
+            "snippet": "std::shared_ptr<WaveTrack> createTrackFromTemplate(const std::string& name, const std::vector<ClipTemplate>& clipTemplates);"
+          },
+          {
+            "severity": "medium",
+            "file": "au3/src/widgets/ASlider.cpp",
+            "line": 882,
+            "cwe": "CWE-1336",
+            "snippet": "void LWSlider::SetToolTipTemplate(const TranslatableString& tip)"
+          },
+          {
+            "severity": "medium",
+            "file": "au3/src/widgets/ASlider.h",
+            "line": 98,
+            "cwe": "CWE-1336",
+            "snippet": "void SetToolTipTemplate(const TranslatableString& tip);"
+          }
+        ]
+      },
+      "LLM02-SensitiveInfoDisclosure": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM03-SupplyChain": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM04-DataPoisoning": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM05-ImproperOutputHandling": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM06-ExcessiveAgency": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM07-SystemPromptLeak": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM08-VectorEmbeddingWeaknesses": {
+        "count": 10,
+        "findings": [
+          {
+            "severity": "low",
+            "file": "au3/src/menus/TrackMenus.cpp",
+            "line": 374,
+            "cwe": "CWE-",
+            "snippet": "float work[2]; // chromagram computation work estimates"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-2.3.6-single-header.h",
+            "line": 1233,
+            "cwe": "CWE-",
+            "snippet": "enum AVChromaLocation {"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-3.4.8-single-header.h",
+            "line": 1176,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-4.2.4-single-header.h",
+            "line": 1184,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-5.0.1-single-header.h",
+            "line": 1219,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-6.0.0-single-header.h",
+            "line": 1300,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-7.0.0-single-header.h",
+            "line": 1331,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-8.0.0-single-header.h",
+            "line": 1401,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-9.0.0-single-header.h",
+            "line": 1409,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-math/PitchName.cpp",
+            "line": 57,
+            "cwe": "CWE-",
+            "snippet": "/*: Name of a musical note in the 12-tone chromatic scale */"
+          }
+        ]
+      },
+      "LLM09-Misinformation": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM10-UnboundedConsumption": {
+        "count": 0,
+        "findings": []
+      }
+    }
+  },
+  "sbom": {
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.5",
+    "serialNumber": "urn:uuid:71a5681a-f048-52a7-b2ac-95037d4133e3",
+    "version": 1,
+    "metadata": {
+      "timestamp": "2026-10-06T07:55:47Z",
+      "component": {
+        "type": "application",
+        "name": "AUDACITY",
+        "version": "8de3891657f6",
+        "bom-ref": "pkg:generic/anticloud/AUDACITY@8de3891657f6",
+        "purl": "pkg:generic/anticloud/AUDACITY@8de3891657f6",
+        "licenses": [
+          {
+            "license": {
+              "id": "GPL-3.0"
+            }
+          }
+        ]
+      },
+      "properties": [
+        {
+          "name": "anticloud:source-commit",
+          "value": "8de3891657f6348916a466239b01301d16399747"
+        },
+        {
+          "name": "anticloud:source-url",
+          "value": "https://github.com/audacity/audacity"
+        },
+        {
+          "name": "anticloud:tier",
+          "value": "tier-agent"
+        }
+      ]
+    },
+    "components": [
+      {
+        "type": "library",
+        "name": "ALSA",
+        "version": "unspecified",
+        "purl": "pkg:generic/ALSA",
+        "bom-ref": "native/ALSA@unspecified"
+      },
+      {
+        "type": "library",
+        "name": "OSS",
+        "version": "unspecified",
+        "purl": "pkg:generic/OSS",
+        "bom-ref": "native/OSS@unspecified"
+      },
+      {
+        "type": "library",
+        "name": "Qt6",
+        "version": "unspecified",
+        "purl": "pkg:generic/Qt6",
+        "bom-ref": "native/Qt6@unspecified"
+      },
+      {
+        "type": "library",
+        "name": "Threads",
+        "version": "unspecified",
+        "purl": "pkg:generic/Threads",
+        "bom-ref": "native/Threads@unspecified"
+      },
+      {
+        "type": "library",
+        "name": "Gettext",
+        "version": "unspecified",
+        "purl": "pkg:generic/Gettext",
+        "bom-ref": "native/Gettext@unspecified"
+      }
+    ]
+  },
+  "elapsed_seconds": 328.36
+}

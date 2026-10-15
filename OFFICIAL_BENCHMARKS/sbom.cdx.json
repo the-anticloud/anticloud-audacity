@@ -1,0 +1,74 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:71a5681a-f048-52a7-b2ac-95037d4133e3",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-06T07:55:47Z",
+    "component": {
+      "type": "application",
+      "name": "AUDACITY",
+      "version": "8de3891657f6",
+      "bom-ref": "pkg:generic/anticloud/AUDACITY@8de3891657f6",
+      "purl": "pkg:generic/anticloud/AUDACITY@8de3891657f6",
+      "licenses": [
+        {
+          "license": {
+            "id": "GPL-3.0"
+          }
+        }
+      ]
+    },
+    "properties": [
+      {
+        "name": "anticloud:source-commit",
+        "value": "8de3891657f6348916a466239b01301d16399747"
+      },
+      {
+        "name": "anticloud:source-url",
+        "value": "https://github.com/audacity/audacity"
+      },
+      {
+        "name": "anticloud:tier",
+        "value": "tier-agent"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "ALSA",
+      "version": "unspecified",
+      "purl": "pkg:generic/ALSA",
+      "bom-ref": "native/ALSA@unspecified"
+    },
+    {
+      "type": "library",
+      "name": "OSS",
+      "version": "unspecified",
+      "purl": "pkg:generic/OSS",
+      "bom-ref": "native/OSS@unspecified"
+    },
+    {
+      "type": "library",
+      "name": "Qt6",
+      "version": "unspecified",
+      "purl": "pkg:generic/Qt6",
+      "bom-ref": "native/Qt6@unspecified"
+    },
+    {
+      "type": "library",
+      "name": "Threads",
+      "version": "unspecified",
+      "purl": "pkg:generic/Threads",
+      "bom-ref": "native/Threads@unspecified"
+    },
+    {
+      "type": "library",
+      "name": "Gettext",
+      "version": "unspecified",
+      "purl": "pkg:generic/Gettext",
+      "bom-ref": "native/Gettext@unspecified"
+    }
+  ]
+}

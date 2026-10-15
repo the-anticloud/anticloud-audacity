@@ -1,0 +1,859 @@
+{
+  "schema": "anticloud.tier-bench/1",
+  "project": "AUDACITY",
+  "source": {
+    "repo_path": "E:\\fenta\\Downloads\\The Anticloud\\ANTICLOUD_REPOS\\AUDIO_CONSUMER\\AUDACITY\\UPSTREAM_CLONE",
+    "git": {
+      "head": "8de3891657f6348916a466239b01301d16399747",
+      "url": "https://github.com/audacity/audacity",
+      "branch": "master",
+      "committed_at": "2026-10-01T21:22:00+02:00"
+    }
+  },
+  "metrics": {
+    "files_total": 4789,
+    "source_files_scanned": 3153,
+    "lines_of_code": 597029,
+    "languages": {
+      ".h": 1637,
+      ".cpp": 1423,
+      ".png": 711,
+      ".qml": 356,
+      ".txt": 190,
+      "(none)": 51,
+      ".xpm": 44,
+      ".cmake": 33,
+      ".sh": 33,
+      ".lsp": 29,
+      ".ny": 28,
+      ".yml": 21,
+      ".py": 19,
+      ".in": 17,
+      ".raw": 15
+    }
+  },
+  "licence": {
+    "spdx": "GPL-3.0",
+    "class": "B",
+    "source_file": "LICENSE.txt",
+    "redistribution_allowed": false
+  },
+  "dependencies": {
+    "count": 4,
+    "unique": 4,
+    "by_ecosystem": {
+      "native": 4
+    },
+    "list": [
+      {
+        "ecosystem": "native",
+        "name": "Threads",
+        "version": "",
+        "source_file": "au3/src/CMakeLists.txt",
+        "raw": "find_package( Threads"
+      },
+      {
+        "ecosystem": "native",
+        "name": "Qt6",
+        "version": "",
+        "source_file": "src/appshell/qml/Audacity/AppShell/CMakeLists.txt",
+        "raw": "find_package(Qt6"
+      },
+      {
+        "ecosystem": "native",
+        "name": "ALSA",
+        "version": "",
+        "source_file": "thirdparty/portmixer/CMakeLists.txt",
+        "raw": "find_package( ALSA"
+      },
+      {
+        "ecosystem": "native",
+        "name": "OSS",
+        "version": "",
+        "source_file": "thirdparty/portmixer/CMakeLists.txt",
+        "raw": "find_package( OSS"
+      }
+    ]
+  },
+  "owasp_top10": {
+    "total_findings": 390,
+    "files_with_findings": 360,
+    "severity": {
+      "high": 18,
+      "medium": 4,
+      "low": 368
+    },
+    "categories": {
+      "A01-BrokenAccessControl": {
+        "count": 1,
+        "findings": [
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-network-manager/curl/CurlHandleManager.cpp",
+            "line": 260,
+            "cwe": "CWE-295",
+            "snippet": "setOption(CURLOPT_SSL_VERIFYPEER, 0L);"
+          }
+        ]
+      },
+      "A02-CryptographicFailures": {
+        "count": 4,
+        "findings": [
+          {
+            "severity": "medium",
+            "file": "au3/libraries/au3-time-and-pitch/StaffPad/TimeAndPitch.cpp",
+            "line": 47,
+            "cwe": "CWE-338",
+            "snippet": "void generateRandomPhaseVector(float* dst, size_t size, std::mt19937& gen)"
+          },
+          {
+            "severity": "medium",
+            "file": "au3/modules/import-export/mod-opus/ExportOpus.cpp",
+            "line": 214,
+            "cwe": "CWE-338",
+            "snippet": "std::mt19937 gen(std::time(nullptr));"
+          },
+          {
+            "severity": "medium",
+            "file": "buildscripts/ci/translation/s3_packandsend.py",
+            "line": 60,
+            "cwe": "CWE-327",
+            "snippet": "hash_file = hashlib.sha1()"
+          },
+          {
+            "severity": "medium",
+            "file": "src/au3wrap/internal/au3project.cpp",
+            "line": 46,
+            "cwe": "CWE-338",
+            "snippet": "std::mt19937 generator(rd());"
+          }
+        ]
+      },
+      "A03-Injection": {
+        "count": 15,
+        "findings": [
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-breakpad-configurer/internal/unix/CrashReportContext.cpp",
+            "line": 82,
+            "cwe": "CWE-120",
+            "snippet": "strcpy(DumpPath, dump_dir);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-vst/VSTWrapper.cpp",
+            "line": 78,
+            "cwe": "CWE-120",
+            "snippet": "strcpy((char*)ptr, \"Audacity Team\");       // Do not translate, max 64 + 1 for null terminator"
+          },
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-vst3/module_linux.cpp",
+            "line": 97,
+            "cwe": "CWE-120",
+            "snippet": "sprintf(buf, \"%d\", pid);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/linux/packages/prepare_offline_dependencies.sh",
+            "line": 10,
+            "cwe": "CWE-78",
+            "snippet": "resultsLocation=$(pwd)"
+          },
+          {
+            "severity": "high",
+            "file": "au3/mac/Wrapper.c",
+            "line": 40,
+            "cwe": "CWE-120",
+            "snippet": "strcpy(path, argv[0]);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/modules/import-export/mod-pcm/ExportPCM.cpp",
+            "line": 876,
+            "cwe": "CWE-120",
+            "snippet": "strcat(pDest.get(), \" \");"
+          },
+          {
+            "severity": "high",
+            "file": "au3/modules/scripting/mod-script-pipe/PipeServer.cpp",
+            "line": 132,
+            "cwe": "CWE-120",
+            "snippet": "sprintf(toFifoName, fifotmpl, \"to\", getuid());"
+          },
+          {
+            "severity": "high",
+            "file": "au3/scripts/piped-work/pipe_test.pl",
+            "line": 493,
+            "cwe": "CWE-120",
+            "snippet": "my $padded = sprintf(\"%-${padLength}s\", $effect);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/src/Profiler.cpp",
+            "line": 128,
+            "cwe": "CWE-120",
+            "snippet": "strcpy(mFileName.get(), fileName);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/src/import/FormatClassifier.cpp",
+            "line": 59,
+            "cwe": "CWE-120",
+            "snippet": "sprintf(dfile, \"%s.sig\", filename);"
+          },
+          {
+            "severity": "high",
+            "file": "au3/src/tracks/playabletrack/notetrack/ui/NoteTrackView.cpp",
+            "line": 627,
+            "cwe": "CWE-120",
+            "snippet": "sprintf(name, \"x%dr\", n);"
+          },
+          {
+            "severity": "high",
+            "file": "buildscripts/tools/run_testflow.sh",
+            "line": 18,
+            "cwe": "CWE-78",
+            "snippet": "case \"$(uname)\" in"
+          },
+          {
+            "severity": "high",
+            "file": "src/effects/nyquist/libnyquist/nyx.c",
+            "line": 1315,
+            "cwe": "CWE-120",
+            "snippet": "strcat(bmode, \"b\");"
+          },
+          {
+            "severity": "high",
+            "file": "thirdparty/portmixer/src/px_linux_alsa.c",
+            "line": 97,
+            "cwe": "CWE-120",
+            "snippet": "sprintf(name, \"hw:%d\", card);"
+          },
+          {
+            "severity": "high",
+            "file": "thirdparty/portmixer/src/px_unix_oss.c",
+            "line": 113,
+            "cwe": "CWE-120",
+            "snippet": "strcpy(name, MIXER_NAME_BASE);"
+          }
+        ]
+      },
+      "A04-InsecureDesign": {
+        "count": 319,
+        "findings": [
+          {
+            "severity": "low",
+            "file": "au3/include/audacity/Types.h",
+            "line": 56,
+            "cwe": "CWE-",
+            "snippet": "// TODO:  I'd imagine this header may be replaced by other public headers. But,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-audio-devices/AudioIOBase.cpp",
+            "line": 256,
+            "cwe": "CWE-",
+            "snippet": "// FIXME: TRAP_ERR errors in HandleDeviceChange not reported."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-audio-devices/AudioIOBase.h",
+            "line": 139,
+            "cwe": "CWE-",
+            "snippet": "* \\todo: Make this do a sample rate query and store the result in the"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-audio-devices/DeviceManager.cpp",
+            "line": 270,
+            "cwe": "CWE-",
+            "snippet": "// this is a bit of a hack, but there's no other way to find out which device is a mapper,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-audio-io/AudioIO.cpp",
+            "line": 40,
+            "cwe": "CWE-",
+            "snippet": "\\todo run through all functions called from audio and portaudio threads"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-audio-io/PlaybackSchedule.cpp",
+            "line": 455,
+            "cwe": "CWE-",
+            "snippet": "//TODO: check that consumer and producer indeed suspended when called from AudioIoCallback"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-audio-unit/AudioUnitEffectsModule.cpp",
+            "line": 229,
+            "cwe": "CWE-",
+            "snippet": "// TODO:  Is it worth it to discriminate all the ways SetHost might"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-audio-unit/AudioUnitWrapper.cpp",
+            "line": 369,
+            "cwe": "CWE-",
+            "snippet": "// TODO might retrieve more error information"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/ChangeSpeedBase.cpp",
+            "line": 145,
+            "cwe": "CWE-",
+            "snippet": "// TODO: please adjust to SyncLock removal"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/ContrastBase.cpp",
+            "line": 68,
+            "cwe": "CWE-",
+            "snippet": "// TODO: This works for stereo, provided the audio clips are in both"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/DistortionBase.cpp",
+            "line": 9,
+            "cwe": "CWE-",
+            "snippet": "// TODO: Add a graph display of the waveshaper equation."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/EchoBase.h",
+            "line": 82,
+            "cwe": "CWE-",
+            "snippet": "// TODO simplify like this in C++20"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/EqualizationCurves.cpp",
+            "line": 238,
+            "cwe": "CWE-",
+            "snippet": "// TODO: Probably better if we used pluginregistry.cfg"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/EqualizationParameters.cpp",
+            "line": 62,
+            "cwe": "CWE-",
+            "snippet": "// TODO: just visit these effect settings the default way"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/RepeatBase.cpp",
+            "line": 66,
+            "cwe": "CWE-",
+            "snippet": "// TODO: please adjust to SyncLock removal"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/SBSMSBase.cpp",
+            "line": 292,
+            "cwe": "CWE-",
+            "snippet": "// TODO: more-than-two-channels"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/SoundTouchBase.cpp",
+            "line": 133,
+            "cwe": "CWE-",
+            "snippet": "// TODO: more-than-two-channels"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/ToneGenBase.cpp",
+            "line": 71,
+            "cwe": "CWE-",
+            "snippet": "// TODO: When previewing, calculate only the first 'preview length'."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/TruncSilenceBase.cpp",
+            "line": 175,
+            "cwe": "CWE-",
+            "snippet": "// TODO:  fix this when settings are really externalized"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/TruncSilenceBase.h",
+            "line": 8,
+            "cwe": "CWE-",
+            "snippet": "//ToDo ... put BlendFrames in Effects, Project, or other class"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-cloud-audiocom/sync/ProjectCloudExtension.cpp",
+            "line": 450,
+            "cwe": "CWE-",
+            "snippet": "{ AudiocomTrace::ignore, // TODO Is this correct ?"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-cloud-audiocom/sync/RemoteProjectSnapshot.cpp",
+            "line": 106,
+            "cwe": "CWE-",
+            "snippet": "mNothingToDo = true;"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-cloud-audiocom/sync/RemoteProjectSnapshot.h",
+            "line": 160,
+            "cwe": "CWE-",
+            "snippet": "bool mNothingToDo { false };"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-command-parameters/ShuttleAutomation.h",
+            "line": 54,
+            "cwe": "CWE-",
+            "snippet": "TODO in C++20: could use simply `auto ...Parameters` if they are `constexpr`"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-command-parameters/WrappedType.cpp",
+            "line": 93,
+            "cwe": "CWE-",
+            "snippet": "return Internat::CompatibleToDouble(*mpStr);"
+          }
+        ]
+      },
+      "A05-SecurityMisconfiguration": {
+        "count": 1,
+        "findings": [
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-wx-wrappers/FileDialog/mac/FileDialogPrivate.mm",
+            "line": 205,
+            "cwe": "CWE-1188",
+            "snippet": "bool allowAll = false;"
+          }
+        ]
+      },
+      "A06-VulnerableComponents": {
+        "count": 0,
+        "findings": []
+      },
+      "A07-AuthFailures": {
+        "count": 1,
+        "findings": [
+          {
+            "severity": "high",
+            "file": "au3/libraries/au3-cloud-audiocom/OAuthService.cpp",
+            "line": 43,
+            "cwe": "CWE-798",
+            "snippet": "const std::string_view passwordPrefix = \"password=\";\nconst std::string_view tokenPrefix = \"token=\";"
+          }
+        ]
+      },
+      "A08-SoftwareDataIntegrity": {
+        "count": 49,
+        "findings": [
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-builtin-effects/EqualizationCurves.cpp",
+            "line": 254,
+            "cwe": "CWE-319",
+            "snippet": "// See http://docs.wxwidgets.org/trunk/classwx_standard_paths.html#5514bf6288ee9f5a0acaf065762ad95d"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-dynamic-range-processor/SimpleCompressor/GainReductionComputer.cpp",
+            "line": 16,
+            "cwe": "CWE-319",
+            "snippet": "along with this program. If not, see <http://www.gnu.org/licenses/>."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-dynamic-range-processor/SimpleCompressor/GainReductionComputer.h",
+            "line": 16,
+            "cwe": "CWE-319",
+            "snippet": "along with this program. If not, see <http://www.gnu.org/licenses/>."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-dynamic-range-processor/SimpleCompressor/LookAheadGainReduction.cpp",
+            "line": 16,
+            "cwe": "CWE-319",
+            "snippet": "along with this program. If not, see <http://www.gnu.org/licenses/>."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-dynamic-range-processor/SimpleCompressor/LookAheadGainReduction.h",
+            "line": 16,
+            "cwe": "CWE-319",
+            "snippet": "along with this program. If not, see <http://www.gnu.org/licenses/>."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-fft/FFT.cpp",
+            "line": 22,
+            "cwe": "CWE-319",
+            "snippet": "http://www.intersrv.com/~dcross/fft.html"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-fft/FFT.h",
+            "line": 18,
+            "cwe": "CWE-319",
+            "snippet": "http://www.intersrv.com/~dcross/fft.html"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-files/AudacityLogger.cpp",
+            "line": 40,
+            "cwe": "CWE-319",
+            "snippet": "// http://docs.wxwidgets.org/3.0/classwx_log.html#a2525bf54fa3f31dc50e6e3cd8651e71d"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-files/FileNames.cpp",
+            "line": 164,
+            "cwe": "CWE-319",
+            "snippet": "// http://bugzilla.audacityteam.org/show_bug.cgi?id=1759"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-lv2/LoadLV2.cpp",
+            "line": 160,
+            "cwe": "CWE-319",
+            "snippet": "// avoid warnings like `lilv_world_add_plugin(): warning: Reloading plugin <http://...>`"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-lv2/LV2Symbols.h",
+            "line": 43,
+            "cwe": "CWE-319",
+            "snippet": "#define LL_NAMESPACE \"http://ll-plugins.nongnu.org/lv2/namespace#\""
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-lv2/lv2_external_ui.h",
+            "line": 15,
+            "cwe": "CWE-319",
+            "snippet": "C header for the LV2 External UI extension <http://kxstudio.sf.net/ns/lv2ext/external-ui>."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-math/Biquad.cpp",
+            "line": 46,
+            "cwe": "CWE-319",
+            "snippet": "// For Chebyshev polynomials of the first kind (see http://en.wikipedia.org/wiki/Chebyshev_polynomial)"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-math/float_cast.h",
+            "line": 52,
+            "cwe": "CWE-319",
+            "snippet": "//    http://www.mega-nerd.com/FPcast/"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-math/SampleFormat.cpp",
+            "line": 29,
+            "cwe": "CWE-319",
+            "snippet": "http://limpet.net/audacity/bugzilla/show_bug.cgi?id=200"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-mixer/Envelope.cpp",
+            "line": 1201,
+            "cwe": "CWE-319",
+            "snippet": "// http://www.wolframalpha.com/input/?i=integrate+10%5E%28log10%28y1%29*%28T-x%29%2FT%2Blog10%28y2%29*x%2FT%29+from+0+to+T"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-note-track/MIDIPlay.cpp",
+            "line": 432,
+            "cwe": "CWE-319",
+            "snippet": "http://support.microsoft.com/default.aspx?scid=KB;EN-US;Q274323&"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-note-track/NoteTrack.cpp",
+            "line": 450,
+            "cwe": "CWE-319",
+            "snippet": "// http://bugzilla.audacityteam.org/show_bug.cgi?id=1735#c3"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-nyquist-effects/NyquistBase.cpp",
+            "line": 899,
+            "cwe": "CWE-319",
+            "snippet": "// See also http://bugzilla.audacityteam.org/show_bug.cgi?id=642#c9"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-project-file-io/ProjectFileIO.cpp",
+            "line": 1841,
+            "cwe": "CWE-319",
+            "snippet": "xmlFile.Write(wxT(\"\\\"http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd\\\" \"));"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-string-utils/ToChars.cpp",
+            "line": 134,
+            "cwe": "CWE-319",
+            "snippet": "http://florian.loitsch.com/publications (bench.tar.gz)."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-strings/Base64.cpp",
+            "line": 19,
+            "cwe": "CWE-319",
+            "snippet": "// http://en.wikibooks.org/wiki/Algorithm_implementation/Miscellaneous/Base64"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-tags/Tags.cpp",
+            "line": 185,
+            "cwe": "CWE-319",
+            "snippet": "// Standard name is offensive (see \"http://www.audacityteam.org/forum/viewtopic.php?f=11&t=3924\")."
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-vst/aeffectx.h",
+            "line": 6,
+            "cwe": "CWE-319",
+            "snippet": "* This file is part of Linux MultiMedia Studio - http://lmms.sourceforge.net"
+          },
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-wave-track/Sequence.cpp",
+            "line": 197,
+            "cwe": "CWE-319",
+            "snippet": "// Note this fix for http://bugzilla.audacityteam.org/show_bug.cgi?id=451,"
+          }
+        ]
+      },
+      "A09-LoggingMonitoringFailures": {
+        "count": 0,
+        "findings": []
+      },
+      "A10-SSRF": {
+        "count": 0,
+        "findings": []
+      }
+    }
+  },
+  "owasp_llm_top10": {
+    "total_findings": 14,
+    "files_with_findings": 14,
+    "severity": {
+      "high": 0,
+      "medium": 4,
+      "low": 10
+    },
+    "categories": {
+      "LLM01-PromptInjection": {
+        "count": 4,
+        "findings": [
+          {
+            "severity": "medium",
+            "file": "au3/src/widgets/ASlider.cpp",
+            "line": 882,
+            "cwe": "CWE-1336",
+            "snippet": "void LWSlider::SetToolTipTemplate(const TranslatableString& tip)"
+          },
+          {
+            "severity": "medium",
+            "file": "au3/src/widgets/ASlider.h",
+            "line": 98,
+            "cwe": "CWE-1336",
+            "snippet": "void SetToolTipTemplate(const TranslatableString& tip);"
+          },
+          {
+            "severity": "medium",
+            "file": "src/importexport/export/view/metadatamodel.cpp",
+            "line": 119,
+            "cwe": "CWE-1336",
+            "snippet": "void MetadataModel::loadTemplate()"
+          },
+          {
+            "severity": "medium",
+            "file": "src/importexport/export/view/metadatamodel.h",
+            "line": 50,
+            "cwe": "CWE-1336",
+            "snippet": "Q_INVOKABLE void loadTemplate();"
+          }
+        ]
+      },
+      "LLM02-SensitiveInfoDisclosure": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM03-SupplyChain": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM04-DataPoisoning": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM05-ImproperOutputHandling": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM06-ExcessiveAgency": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM07-SystemPromptLeak": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM08-VectorEmbeddingWeaknesses": {
+        "count": 10,
+        "findings": [
+          {
+            "severity": "low",
+            "file": "au3/libraries/au3-math/PitchName.cpp",
+            "line": 57,
+            "cwe": "CWE-",
+            "snippet": "/*: Name of a musical note in the 12-tone chromatic scale */"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-2.3.6-single-header.h",
+            "line": 1233,
+            "cwe": "CWE-",
+            "snippet": "enum AVChromaLocation {"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-3.4.8-single-header.h",
+            "line": 1176,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-4.2.4-single-header.h",
+            "line": 1184,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-5.0.1-single-header.h",
+            "line": 1219,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-6.0.0-single-header.h",
+            "line": 1300,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-7.0.0-single-header.h",
+            "line": 1331,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-8.0.0-single-header.h",
+            "line": 1401,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/modules/import-export/mod-ffmpeg/lib-ffmpeg-support/impl/ffmpeg-9.0.0-single-header.h",
+            "line": 1409,
+            "cwe": "CWE-",
+            "snippet": "AVCOL_SPC_CHROMA_DERIVED_NCL = 12,"
+          },
+          {
+            "severity": "low",
+            "file": "au3/src/menus/TrackMenus.cpp",
+            "line": 374,
+            "cwe": "CWE-",
+            "snippet": "float work[2]; // chromagram computation work estimates"
+          }
+        ]
+      },
+      "LLM09-Misinformation": {
+        "count": 0,
+        "findings": []
+      },
+      "LLM10-UnboundedConsumption": {
+        "count": 0,
+        "findings": []
+      }
+    }
+  },
+  "sbom": {
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.5",
+    "serialNumber": "urn:uuid:71a5681a-f048-52a7-b2ac-95037d4133e3",
+    "version": 1,
+    "metadata": {
+      "timestamp": "2026-10-05T16:03:09Z",
+      "component": {
+        "type": "application",
+        "name": "AUDACITY",
+        "version": "8de3891657f6",
+        "bom-ref": "pkg:generic/anticloud/AUDACITY@8de3891657f6",
+        "purl": "pkg:generic/anticloud/AUDACITY@8de3891657f6",
+        "licenses": [
+          {
+            "license": {
+              "id": "GPL-3.0"
+            }
+          }
+        ]
+      },
+      "properties": [
+        {
+          "name": "anticloud:source-commit",
+          "value": "8de3891657f6348916a466239b01301d16399747"
+        },
+        {
+          "name": "anticloud:source-url",
+          "value": "https://github.com/audacity/audacity"
+        },
+        {
+          "name": "anticloud:tier",
+          "value": "tier-agent"
+        }
+      ]
+    },
+    "components": [
+      {
+        "type": "library",
+        "name": "Threads",
+        "version": "unspecified",
+        "purl": "pkg:generic/Threads",
+        "bom-ref": "native/Threads@unspecified"
+      },
+      {
+        "type": "library",
+        "name": "Qt6",
+        "version": "unspecified",
+        "purl": "pkg:generic/Qt6",
+        "bom-ref": "native/Qt6@unspecified"
+      },
+      {
+        "type": "library",
+        "name": "ALSA",
+        "version": "unspecified",
+        "purl": "pkg:generic/ALSA",
+        "bom-ref": "native/ALSA@unspecified"
+      },
+      {
+        "type": "library",
+        "name": "OSS",
+        "version": "unspecified",
+        "purl": "pkg:generic/OSS",
+        "bom-ref": "native/OSS@unspecified"
+      }
+    ]
+  },
+  "elapsed_seconds": 2369.24
+}
